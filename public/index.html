@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM Lite | Modern Customer Relationship Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4fc3f7;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: #e0f7fa;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #4fc3f7;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-outline {
+            border: 2px solid #4fc3f7;
+            background: transparent;
+            color: #4fc3f7;
+        }
+        
+        .btn-outline:hover {
+            background: #4fc3f7;
+            color: #0f2027;
+        }
+        
+        .btn-primary {
+            background: #4fc3f7;
+            border: 2px solid #4fc3f7;
+            color: #0f2027;
+        }
+        
+        .btn-primary:hover {
+            background: transparent;
+            color: #4fc3f7;
+        }
+        
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            min-height: 80vh;
+            padding: 40px 0;
+        }
+        
+        .hero-content {
+            flex: 1;
+            padding-right: 50px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(to right, #4fc3f7, #e0f7fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #e0f7fa;
+            line-height: 1.6;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .main-image {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: perspective(800px) rotateY(-10deg);
+            transition: transform 0.5s;
+        }
+        
+        .main-image:hover {
+            transform: perspective(800px) rotateY(0);
+        }
+        
+        .floating-element {
+            position: absolute;
+            background: rgba(79, 195, 247, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .floating-element i {
+            font-size: 24px;
+            color: #4fc3f7;
+        }
+        
+        .element-1 {
+            top: 50px;
+            left: 0;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .element-2 {
+            bottom: 80px;
+            right: 0;
+            animation: float 5s ease-in-out infinite 1s;
+        }
+        
+        .element-3 {
+            top: 200px;
+            right: 30px;
+            animation: float 7s ease-in-out infinite 0.5s;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #4fc3f7;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #e0f7fa;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: left;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            color: #4fc3f7;
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #e0f7fa;
+        }
+        
+        .feature-desc {
+            color: #b2ebf2;
+            line-height: 1.6;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, rgba(79, 195, 247, 0.1), rgba(224, 247, 250, 0.1));
+            border-radius: 20px;
+            padding: 60px;
+            text-align: center;
+            margin: 100px 0;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #4fc3f7;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #e0f7fa;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #b2ebf2;
+            border-top: 1px solid rgba(79, 195, 247, 0.2);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 50px;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .auth-buttons {
+                display: none;
+            }
+            
+            .floating-element {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <div class="logo">
+                <i class="fas fa-cloud"></i>
+                CRM LITE
+            </div>
+            <div class="nav-links">
+                <a href="#">Features</a>
+                <a href="#">Pricing</a>
+                <a href="#">Resources</a>
+                <a href="#">Support</a>
+            </div>
+            <div class="auth-buttons">
+                <button class="btn btn-outline" onclick="window.location.href='login.html'">Log In</button>
+                <button class="btn btn-primary">Sign Up</button>
+            </div>
+        </nav>
+        
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Simplify Your Customer Relationship Management</h1>
+                <p>CRM Lite helps you manage customer interactions, track sales, and grow your business with our intuitive, lightweight platform.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">Get Started Free</button>
+                    <button class="btn btn-outline">Watch Demo</button>
+                </div>
+                <p><i class="fas fa-star"></i> Rated 4.8/5 by over 2,000 customers</p>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="CRM Dashboard" class="main-image">
+                <div class="floating-element element-1">
+                    <i class="fas fa-chart-line"></i>
+                    <div>Sales increased by 47%</div>
+                </div>
+                <div class="floating-element element-2">
+                    <i class="fas fa-users"></i>
+                    <div>Customer satisfaction +32%</div>
+                </div>
+                <div class="floating-element element-3">
+                    <i class="fas fa-bolt"></i>
+                    <div>Workflow efficiency improved</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section class="features">
+            <h2 class="section-title">Powerful Features</h2>
+            <p class="section-subtitle">Everything you need to manage customer relationships, streamline processes, and improve profitability</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h3 class="feature-title">Contact Management</h3>
+                    <p class="feature-desc">Organize all your customer information in one place with our intuitive contact management system.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3 class="feature-title">Task Automation</h3>
+                    <p class="feature-desc">Automate repetitive tasks and focus on what matters most - building customer relationships.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3 class="feature-title">Analytics & Reporting</h3>
+                    <p class="feature-desc">Gain valuable insights with customizable reports and data visualization tools.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="cta">
+            <h2>Ready to Transform Your Business?</h2>
+            <p>Join thousands of satisfied customers who use CRM Lite to streamline their customer management process.</p>
+            <button class="btn btn-primary" onclick="window.location.href='dashboard.html'">Get Started Now</button>
+        </section>
+        
+        <!-- Footer -->
+        <footer>
+            <p>© 2023 CRM Lite. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // GSAP Animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Register ScrollTrigger plugin
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Set up initial animations
+            const tl = gsap.timeline();
+            
+            // Animate the navigation
+            tl.from('nav', {
+                duration: 0.8,
+                y: -50,
+                opacity: 0,
+                ease: 'power2.out'
+            });
+            
+            // Animate hero content
+            tl.from('.hero-content h1', {
+                duration: 0.8,
+                y: 30,
+                opacity: 0,
+                ease: 'power2.out'
+            }, '-=0.4');
+            
+            tl.from('.hero-content p', {
+                duration: 0.8,
+                y: 30,
+                opacity: 0,
+                ease: 'power2.out'
+            }, '-=0.6');
+            
+            tl.from('.hero-buttons', {
+                duration: 0.8,
+                y: 30,
+                opacity: 0,
+                ease: 'power2.out'
+            }, '-=0.6');
+            
+            // Animate hero image
+            tl.from('.main-image', {
+                duration: 1,
+                x: 100,
+                opacity: 0,
+                rotation: -5,
+                ease: 'power2.out'
+            }, '-=0.8');
+            
+            // Animate floating elements with stagger
+            tl.from('.floating-element', {
+                duration: 1,
+                scale: 0,
+                opacity: 0,
+                stagger: 0.2,
+                ease: 'back.out(1.7)'
+            }, '-=0.5');
+            
+            // Animate features on scroll
+            gsap.from('.feature-card', {
+                scrollTrigger: {
+                    trigger: '.features',
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: 'play none none none'
+                },
+                y: 50,
+                opacity: 0,
+                stagger: 0.2,
+                duration: 0.8,
+                ease: 'power2.out'
+            });
+            
+            // Animate CTA section on scroll
+            gsap.from('.cta', {
+                scrollTrigger: {
+                    trigger: '.cta',
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: 'play none none none'
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: 'power2.out'
+            });
+            
+            // Add continuous subtle animation to the logo
+            gsap.to('.logo', {
+                y: 5,
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+        });
+    </script>
+</body>
+</html>
