@@ -1,0 +1,26 @@
+# Node modules
+node_modules/
+dist/
+build/
+.env
+
+# Java / Spring Boot
+target/
+*.class
+*.jar
+*.war
+.mvn/
+!mvnw
+!mvnw.cmd
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+*.log
+
+# Sensitive Backend Config
+# We ignore the real properties file to protect passwords and API keys
+application.properties
+application-dev.properties
+application-prod.properties
